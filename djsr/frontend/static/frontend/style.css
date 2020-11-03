@@ -1,7 +1,15 @@
 #root {
   background-color: rebeccapurple;
+  color: white;
 }
 
 .site {
-  color: black;
+  color: white;
+}
+
+.nav-link {
+  color: blue;
+  border: 1px solid white;
+  padding: 1em;
+  background-color: black;
 }
