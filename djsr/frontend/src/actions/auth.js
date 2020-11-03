@@ -15,3 +15,17 @@ export function loginUser(user) {
     user,
   };
 }
+
+export function signup(username, email, password) {
+  return async (dispatch, getState) => {
+    //TODO fetch call to login API
+    return;
+  };
+}
+
+export function signupUser(user) {
+  return {
+    type: SIGNUP_USER,
+    user,
+  };
+}
