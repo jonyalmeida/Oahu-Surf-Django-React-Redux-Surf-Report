@@ -4,7 +4,8 @@
   "description": "A surf report app for Oahu",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --config webpack.config.js",
+    "test": "test"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,17 @@
   "bugs": {
     "url": "https://github.com/jonyalmeida/Oahu-Surf-Django-React-Redux-Surf-Report/issues"
   },
-  "homepage": "https://github.com/jonyalmeida/Oahu-Surf-Django-React-Redux-Surf-Report#readme"
+  "homepage": "https://github.com/jonyalmeida/Oahu-Surf-Django-React-Redux-Surf-Report#readme",
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "webpack": "^4.35.0",
+    "webpack-cli": "^4.1.0"
+  },
+  "dependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  }
 }
