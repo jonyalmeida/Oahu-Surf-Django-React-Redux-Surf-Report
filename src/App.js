@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Route, Switch, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import xmlJs from "xml-js";
+import xmlJsonify from "xml-jsonify";
 
-import Home from "./containers/Home";
-import Login from "./containers/Login";
-import Signup from "./containers/Signup";
+import Home from "./components/Home";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
 import { logout, authCheckState } from "./store/actions/auth";
 
 export default function App() {
@@ -20,7 +22,25 @@ export default function App() {
 
   useEffect(() => {
     onTryAutoSignup();
-  });
+    let surfInfo;
+    const data = (async () => {
+      const response = await fetch(
+        "https://cors-anywhere.herokuapp.com/https://www.weather.gov/source/hfo/xml/SurfState.xml",
+        {
+          headers: {
+            "Content-Type": "application/xml",
+          },
+        }
+      );
+
+      const data2 = await response.text();
+      const data = xmlJsonify(data2, (err, data) => {
+        console.log(err || data);
+      });
+      console.log("response", data);
+    })();
+    console.log(surfInfo);
+  }, []);
 
   return (
     <div>

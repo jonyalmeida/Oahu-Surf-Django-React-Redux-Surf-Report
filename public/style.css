@@ -1,0 +1,22 @@
+body {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  display: grid;
+  border: 1px solid black;
+  justify-content: center;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  width: 90vw;
+}
+
+.header {
+  text-align: center;
+}
+
+.sides {
+  display: flex;
+  justify-content: center;
+  min-height: 15vh;
+}
