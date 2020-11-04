@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { login } from "../actions/auth";
@@ -7,7 +7,7 @@ export default function Login() {
   const dispatch = useDispatch();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const err = useSelector((state) => state.errors.auth);
+  // const err = useSelector((state) => state.errors.auth);
 
   const loggedOut = useSelector((state) => !state.user);
 

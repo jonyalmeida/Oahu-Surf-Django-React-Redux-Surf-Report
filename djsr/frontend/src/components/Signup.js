@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { signup } from "../actions/auth";
@@ -6,9 +6,9 @@ import { signup } from "../actions/auth";
 export default function Signup() {
   const dispatch = useDispatch();
 
-  const [username, setUsername] = setState("");
-  const [email, setEmail] = setState("");
-  const [password, setPassword] = setState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
