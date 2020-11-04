@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { login } from "../actions/auth";
+import { loginThunk } from "../actions/auth";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -17,8 +17,7 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("A username and password was submitted!" + username + " " + password);
-    dispatch(login(email, password));
+    dispatch(loginThunk(username, password));
   };
 
   return (

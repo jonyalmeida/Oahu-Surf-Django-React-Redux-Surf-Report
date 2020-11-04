@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { signup } from "../actions/auth";
+import { signupThunk } from "../actions/auth";
 
 export default function Signup() {
   const dispatch = useDispatch();
@@ -9,13 +9,11 @@ export default function Signup() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({});
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(
-      "A user is creating an account " + username + " " + email + " " + password
-    );
-    dispatch(signup(username, email, password));
+    dispatch(signupThunk(username, email, password));
   };
 
   return (
@@ -30,6 +28,7 @@ export default function Signup() {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
+          {errors.username ? errors.username : null}
         </label>
         <label>
           email
@@ -39,6 +38,7 @@ export default function Signup() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
+          {errors.email ? errors.email : null}
         </label>
         <label>
           Password
@@ -48,6 +48,7 @@ export default function Signup() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          {errors.password ? errors.password : null}
         </label>
         <input type='submit' value='Submit' />
       </form>
