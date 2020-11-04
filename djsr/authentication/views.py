@@ -4,6 +4,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 from .serializers import MyTokenObtainPairSerializer, CustomUserSerializer
+from django.views.decorators.csrf import ensure_csrf_cookie
 
 
 class ObtainTokenPairWithEmailView(TokenObtainPairView):
@@ -13,7 +14,7 @@ class ObtainTokenPairWithEmailView(TokenObtainPairView):
 class CustomUserCreate(APIView):
     permission_classes = (permissions.AllowAny,)
     authentication_classes = ()
-
+    @ensure_csrf_cookie
     def post(self, request, format='json'):
         serializer = CustomUserSerializer(data=request.data)
         if serializer.is_valid():
@@ -25,7 +26,7 @@ class CustomUserCreate(APIView):
 
 
 class HelloWorldView(APIView):
-
+    @ensure_csrf_cookie
     def get(self, request):
         return Response(data={"hello": "world"}, status=status.HTTP_200_OK)
 

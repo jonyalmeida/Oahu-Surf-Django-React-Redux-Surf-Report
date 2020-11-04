@@ -2,14 +2,17 @@
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import serializers
 from .models import CustomUser
+from django.views.decorators.csrf import ensure_csrf_cookie
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 
     @classmethod
+    @ensure_csrf_cookie
     def get_token(cls, user):
+        print('before token')
         token = super(MyTokenObtainPairSerializer, cls).get_token(user)
-        
+
         # Add custom claims
         token['email'] = user.email
         print(user)
@@ -30,7 +33,8 @@ class CustomUserSerializer(serializers.ModelSerializer):
         model = CustomUser
         fields = ('email', 'username', 'password')
         extra_kwargs = {'password': {'write_only': True}}
-
+    
+    @ensure_csrf_cookie
     def create(self, validated_data):
         password = validated_data.pop('password', None)
         instance = self.Meta.model(**validated_data)  # as long as the fields are the same, we can just use this
