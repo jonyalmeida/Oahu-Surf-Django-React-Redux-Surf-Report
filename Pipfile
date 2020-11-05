@@ -36,6 +36,8 @@ wrapt = "==1.11.2"
 Django = "==2.2.10"
 psycopg2-binary = "*"
 xmltodict = "*"
+nose = "*"
+matplotlib = "*"
 
 [requires]
 python_version = "3.8"
