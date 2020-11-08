@@ -79,7 +79,8 @@ def get_wave(data, meta=True):
     waves = data['dwml']['data']['parameters']['water-state']['waves']
     cut = len(waves) // 2
     result = [w['value'] for w in waves[:cut] if isinstance(w['value'], str)]
-    # wave2_heights = [w['value'] for w in waves[cut:] if isinstance(w['value'], str)]
+    # wave2_heights = [w['value'] for w in waves[cut:]
+    # if isinstance(w['value'], str)]
     if meta:
         result = add_metadata(data, result, 'wave_height')
     return result
