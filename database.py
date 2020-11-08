@@ -36,7 +36,7 @@ with app.app_context():
         name="China Walls",
         shore="South",
         lat=21.258294,
-        long=157.758453,
+        long=-157.758453,
     )
     diamond_head = SurfSpot(
         name="Diamont Head",

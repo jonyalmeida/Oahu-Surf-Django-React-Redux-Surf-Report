@@ -11,6 +11,7 @@ from flask_login import LoginManager
 from app.models import db, User
 from app.api.user_routes import user_routes
 from app.api.session_routes import session_routes
+from app.api.report_routes import report_routes
 
 app = Flask(__name__)
 
@@ -19,8 +20,11 @@ app.logger.addHandler(logging.StreamHandler(sys.stdout))
 
 
 app.config.from_object(Config)
+
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(session_routes, url_prefix='/api/session')
+app.register_blueprint(report_routes, url_prefix='/api/reports')
+
 db.init_app(app)
 Migrate(app, db)
 

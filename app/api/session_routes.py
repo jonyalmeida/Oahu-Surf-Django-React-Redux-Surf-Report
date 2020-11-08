@@ -16,7 +16,6 @@ def restore_csrf():
 # user signup route
 @session_routes.route('/signup', methods=["POST"])
 def signup():
-    print(request)
     username = request.json.get('username', None)
     email = request.json.get('email', None)
     password = request.json.get('password', None)
@@ -24,7 +23,7 @@ def signup():
     if not username:
         return 'What\'s your name brah?', 400
     # if not email:
-    #     return 'Email not found', 400
+    # return 'Email not found', 400
     if not password:
         return 'Keep it secret! Provide a password.', 400
 
