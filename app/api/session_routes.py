@@ -55,7 +55,7 @@ def login():
     if authenticated:
         login_user(user)
         print(user)
-        resp = jsonify(current_user=user.to_dict())
+        resp = jsonify(user.to_dict())
         return resp, 200
 
     return {'errors': ['Invalid username or password']}, 401
