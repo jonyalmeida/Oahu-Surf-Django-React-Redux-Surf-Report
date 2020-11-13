@@ -1,4 +1,4 @@
-from app.models import User, SurfSpot, Favorite
+from app.models import User, SurfSpot, favorites_table
 from app import app, db
 from dotenv import load_dotenv
 load_dotenv()
@@ -14,22 +14,30 @@ with app.app_context():
         last_name="Fanning",
         email="mick@fanning.com",
         username="mick",
-        password="password"
+        password="password",
+        shore_order=['north', 'south', 'west', 'east']
     )
     kelly = User(
         first_name="Kelly",
         last_name="Slater",
         email="kelly@slater.com",
         username="kelly",
-        password="password"
+        password="password",
+        shore_order=['north', 'south', 'west', 'east']
     )
     felipe = User(
         first_name="Felipe",
         last_name="Toledo",
         email="felipe@toledo.com",
         username="felipe",
-        password="password"
+        password="password",
+        shore_order=['north', 'south', 'west', 'east']
     )
+
+    db.session.add(mick)
+    db.session.add(kelly)
+    db.session.add(felipe)
+    db.session.commit()
 
     # surfspots
     china_walls = SurfSpot(
@@ -122,45 +130,7 @@ with app.app_context():
         lat=21.5489781,
         long=-157.8614553
     )
-
-    # favorites
-    entry1 = Favorite(
-        surfspot_id=1,
-        user_id=2
-    )
-    entry2 = Favorite(
-        surfspot_id=5,
-        user_id=2
-    )
-    entry3 = Favorite(
-        surfspot_id=7,
-        user_id=2
-    )
-    entry4 = Favorite(
-        surfspot_id=12,
-        user_id=2
-    )
-    entry5 = Favorite(
-        surfspot_id=11,
-        user_id=1
-    )
-    entry6 = Favorite(
-        surfspot_id=6,
-        user_id=1
-    )
-    entry7 = Favorite(
-        surfspot_id=3,
-        user_id=1
-    )
-    entry8 = Favorite(
-        surfspot_id=8,
-        user_id=3
-    )
-
-    db.session.add(mick)
-    db.session.add(kelly)
-    db.session.add(felipe)
-
+    
     db.session.add(china_walls)
     db.session.add(diamond_head)
     db.session.add(kaisers)
@@ -176,12 +146,49 @@ with app.app_context():
     db.session.add(sandys)
     db.session.add(makapuu)
     db.session.add(goat_island)
-    db.session.add(entry1)
-    db.session.add(entry2)
-    db.session.add(entry3)
-    db.session.add(entry4)
-    db.session.add(entry5)
-    db.session.add(entry6)
-    db.session.add(entry7)
-    db.session.add(entry8)
+    db.session.commit()
+
+    # favorites
+    entry1 = favorites_table.insert().values(
+        surfspot_id=1,
+        user_id=2
+    )
+    print(entry1)
+    entry2 = favorites_table.insert().values(
+        surfspot_id=5,
+        user_id=2
+    )
+    entry3 = favorites_table.insert().values(
+        surfspot_id=7,
+        user_id=2
+    )
+    entry4 = favorites_table.insert().values(
+        surfspot_id=12,
+        user_id=2
+    )
+    entry5 = favorites_table.insert().values(
+        surfspot_id=11,
+        user_id=1
+    )
+    entry6 = favorites_table.insert().values(
+        surfspot_id=6,
+        user_id=1
+    )
+    entry7 = favorites_table.insert().values(
+        surfspot_id=3,
+        user_id=1
+    )
+    entry8 = favorites_table.insert().values(
+        surfspot_id=8,
+        user_id=3
+    )
+
+    db.session.execute(entry1)
+    db.session.execute(entry2)
+    db.session.execute(entry3)
+    db.session.execute(entry4)
+    db.session.execute(entry5)
+    db.session.execute(entry6)
+    db.session.execute(entry7)
+    db.session.execute(entry8)
     db.session.commit()

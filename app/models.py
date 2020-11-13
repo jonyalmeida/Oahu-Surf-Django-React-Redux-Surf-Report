@@ -19,6 +19,7 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String(40))
     last_name = db.Column(db.String(40))
     email = db.Column(db.String(255), unique=True)
+    shore_order = db.Column(db.ARRAY(db.String(5)))
     hashed_password = db.Column(db.String(128), nullable=False)
     favorites = db.relationship('SurfSpot', secondary=lambda: favorites_table)
 
@@ -35,7 +36,8 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email or '',
-            'my_spots': [spot.to_dict() for spot in self.favorites]
+            'my_spots': [spot.to_dict() for spot in self.favorites],
+            'shore_order': [n for n in self.shore_order]
         }
 
     @classmethod
