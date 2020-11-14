@@ -9,7 +9,6 @@ export default function MyPage() {
     const userShoreOrder = useSelector((state) => state.auth.shore_order);
 
     if (!report[userShoreOrder[0]]) return null;
-    console.log(report);
 
     return (
         <div className='main'>

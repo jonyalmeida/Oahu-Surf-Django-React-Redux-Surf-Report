@@ -13,7 +13,6 @@ export function getReports(lat, long, idx) {
         //extract surf report
         const report = parseReport(parse, "Oahu");
         dispatch(sendReport(report));
-        console.log(report);
 
         // const response2 = await fetch(
         //     "https://thingproxy.freeboard.io/fetch/https://www.surfnewsnetwork.com/"

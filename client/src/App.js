@@ -17,7 +17,6 @@ function App() {
 
     const user = useSelector((state) => state.auth);
     const home = useSelector((state) => state.home.home);
-    console.log(home);
     useEffect(() => {
         dispatch(restoreCSRF());
         dispatch(getReports());
