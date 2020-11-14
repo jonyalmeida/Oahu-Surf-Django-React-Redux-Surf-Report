@@ -45,12 +45,12 @@ export default function AutoCompleteInput() {
     const [query, setQuery] = useState("");
     const autoCompleteRef = useRef(null);
 
-    useEffect(() => {
-        loadScript(
-            `https://maps.googleapis.com/maps/api/js?key=AIzaSyCpaZjAmyahzwFxn1ROdAGajQ_511Sri4k&libraries=places`,
-            () => handleScriptLoad(setQuery, autoCompleteRef)
-        );
-    }, []);
+    // useEffect(() => {
+    //     loadScript(
+    //         // `https://maps.googleapis.com/maps/api/js?key=&libraries=places`,
+    //         // () => handleScriptLoad(setQuery, autoCompleteRef)
+    //     );
+    // }, []);
 
     return (
         <div className='search-location-input'>
