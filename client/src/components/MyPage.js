@@ -88,8 +88,8 @@ export default function MyPage() {
                 </div>
             </div>
             <div className='main--content--other-shores'>
-                {userShoreOrder.slice(1).map((shore) => (
-                    <Shore shore={shore} report={report} />
+                {userShoreOrder.slice(1).map((shore, i) => (
+                    <Shore key={i} shore={shore} report={report} />
                 ))}
             </div>
         </div>

@@ -388,3 +388,7 @@ input:focus {
 .cams--webcam {
     text-align: center;
 }
+
+.display {
+    display: none;
+}

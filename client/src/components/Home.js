@@ -91,8 +91,8 @@ export default function Home() {
             </div>
             <div className='main--content--other-shores'>
                 {report.north &&
-                    ["south", "west", "east"].map((shore) => (
-                        <Shore shore={shore} report={report} />
+                    ["south", "west", "east"].map((shore, i) => (
+                        <Shore key={i} shore={shore} report={report} />
                     ))}
             </div>
         </div>

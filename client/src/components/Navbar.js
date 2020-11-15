@@ -6,6 +6,7 @@ import Login from "./Login";
 import Signup from "./Signup";
 import { logout } from "../store/actions/auth";
 import { setHome } from "../store/actions/nav";
+import Modal from "./Modal";
 
 import { getReports } from "../store/actions/reports";
 
@@ -15,6 +16,19 @@ export default function Navbar() {
     const dispatch = useDispatch();
     const user = useSelector((state) => state.auth);
 
+    const [modal, setModal] = useState(false);
+
+    const modalOpen = () => {
+        console.log("3");
+        setModal(true);
+    };
+
+    const modalClose = () => {
+        console.log("4");
+        setModal(false);
+    };
+
+    let options;
     const [showModal, setShowModal] = useState(false);
     const [displayLoginSignup, setDisplayLoginSignup] = useState(false);
 
@@ -75,6 +89,10 @@ export default function Navbar() {
             case "about":
                 dispatch(setHome("about"));
                 break;
+            case "options":
+                console.log("OPTIONS");
+                dispatch(setHome("options"));
+                break;
             default:
                 return;
         }
@@ -108,23 +126,41 @@ export default function Navbar() {
                                 <li id='big-island'>Big Island</li>
                             </ul>
                         </li>
-                        <li>
-                            Options
-                            <ul className='header--menu-dropdown'>
-                                <li id='choose-shore' onClick={handleNavClick}>
-                                    Pick your shore
-                                </li>
-                                <li id='choose-island' onClick={handleNavClick}>
-                                    Pick your island
-                                </li>
-                                <li id='addspots' onClick={handleNavClick}>
-                                    Add spots
-                                </li>
-                            </ul>
-                        </li>
                         <li id='surfspots' onClick={handleNavClick}>
                             More spots
                         </li>
+                        {user.id && (
+                            <li id='options' onClick={handleNavClick}>
+                                My Options
+                                <ul className='header--menu-dropdown'>
+                                    <li
+                                        style={{
+                                            textDecoration: "line-through",
+                                        }}
+                                        id='choose-shore'
+                                        onClick={handleNavClick}
+                                        disabled={true}>
+                                        Pick your shore
+                                    </li>
+                                    <li
+                                        style={{
+                                            textDecoration: "line-through",
+                                        }}
+                                        id='choose-island'
+                                        onClick={handleNavClick}>
+                                        Pick your island
+                                    </li>
+                                    <li
+                                        style={{
+                                            textDecoration: "line-through",
+                                        }}
+                                        id='addspots'
+                                        onClick={handleNavClick}>
+                                        Add spots
+                                    </li>
+                                </ul>
+                            </li>
+                        )}
                     </ul>
                 </nav>
                 <div className='header--auth-links'>
