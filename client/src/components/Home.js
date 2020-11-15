@@ -8,7 +8,6 @@ export default function Home() {
     const report = useSelector((state) => state.reports);
 
     if (!report.north) return null;
-
     return (
         <div className='main'>
             <MainHeader />
@@ -82,10 +81,10 @@ export default function Home() {
                             <h3>💨&nbsp;{report.winds}</h3>
                         </div>
                         <div className='weather--widgets'>
-                            <h3>🌤&nbsp;{report.weather}</h3>
+                            <h3>🌤&nbsp;{report.weather.current.text}</h3>
                         </div>
                         <div className='weather--widgets'>
-                            <h3>🌡&nbsp;{report.highsOf}</h3>
+                            <h3>🌡&nbsp;{report.weather.current.high}</h3>
                         </div>
                     </div>
                 </div>

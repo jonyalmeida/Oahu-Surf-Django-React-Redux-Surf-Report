@@ -18,7 +18,7 @@ export default function MainHeader() {
             setWindDirection(degreeToCompass(data.wind.deg));
             setWindSpeed(Math.ceil(data.wind.speed));
         })();
-    }, []);
+    }, [temp, windDirection, windSpeed]);
 
     return (
         <div className='main--header'>

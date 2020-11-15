@@ -11,6 +11,7 @@ import Cams from "./components/Cams";
 import { restoreCSRF } from "./store/actions/csrf";
 import { getReports } from "./store/actions/reports";
 import { setHome } from "./store/actions/nav";
+import FetchSurfSpots from "./components/FetchSurfSpots";
 
 function App() {
     const dispatch = useDispatch();
@@ -19,15 +20,23 @@ function App() {
     const home = useSelector((state) => state.home.home);
     useEffect(() => {
         dispatch(restoreCSRF());
-        dispatch(getReports());
-        dispatch(setHome("home"));
+        dispatch(getReports("Oahu"));
+        dispatch(setHome("surfspots"));
     }, [dispatch]);
 
     return (
         <>
             <Topbar />
             <Navbar user={user} />
-            {home === "cams" ? <Cams /> : user.id ? <MyPage /> : <Home />}
+            {home === "cams" ? (
+                <Cams />
+            ) : home === "surfspots" ? (
+                <FetchSurfSpots />
+            ) : user.id ? (
+                <MyPage />
+            ) : (
+                <Home />
+            )}
             <Footer />
         </>
     );

@@ -7,7 +7,7 @@ import Signup from "./Signup";
 import { logout } from "../store/actions/auth";
 import { setHome } from "../store/actions/nav";
 
-import AutoCompleteInput from "./googlemaps/AutoCompleteInput";
+import { getReports } from "../store/actions/reports";
 
 ReactModal.setAppElement("body");
 
@@ -52,17 +52,25 @@ export default function Navbar() {
             case "cams":
                 dispatch(setHome("cams"));
                 break;
+            case "surfspots":
+                dispatch(setHome("surfspots"));
+                break;
             case "oahu":
+                dispatch(getReports("Oahu"));
                 dispatch(setHome("home"));
+
                 break;
             case "kauai":
+                dispatch(getReports("Kauai"));
                 dispatch(setHome("home"));
+
                 break;
             case "maui":
+                dispatch(getReports("Maui"));
                 dispatch(setHome("home"));
                 break;
             case "big-island":
-                dispatch(setHome("home"));
+                dispatch(getReports("South Big Island and "));
                 break;
             case "about":
                 dispatch(setHome("about"));
@@ -97,22 +105,28 @@ export default function Navbar() {
                                 <li id='maui' onClick={handleNavClick}>
                                     Maui
                                 </li>
-                                <li id='big-island' onClick={handleNavClick}>
-                                    Big Island
+                                <li id='big-island'>Big Island</li>
+                            </ul>
+                        </li>
+                        <li>
+                            Options
+                            <ul className='header--menu-dropdown'>
+                                <li id='choose-shore' onClick={handleNavClick}>
+                                    Pick your shore
+                                </li>
+                                <li id='choose-island' onClick={handleNavClick}>
+                                    Pick your island
+                                </li>
+                                <li id='addspots' onClick={handleNavClick}>
+                                    Add spots
                                 </li>
                             </ul>
                         </li>
-                        <li id='about' onClick={handleNavClick}>
-                            About
+                        <li id='surfspots' onClick={handleNavClick}>
+                            More spots
                         </li>
                     </ul>
                 </nav>
-                <div className='header--searchbar'>
-                    <form method='POST'>
-                        <label name='search'>Search bar </label>
-                        <AutoCompleteInput />
-                    </form>
-                </div>
                 <div className='header--auth-links'>
                     {user.id ? (
                         <>
