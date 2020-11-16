@@ -22,7 +22,7 @@ function App() {
     useEffect(() => {
         dispatch(restoreCSRF());
         dispatch(getReports("Oahu"));
-        dispatch(setHome("home"));
+        dispatch(setHome("options"));
     }, [dispatch]);
 
     return (
