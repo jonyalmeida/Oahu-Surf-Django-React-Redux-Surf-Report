@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink, Redirect } from "react-router-dom";
 
 import { signup } from "../store/actions/auth";
 
@@ -8,7 +7,6 @@ export default function RegistrationForm(props) {
     const dispatch = useDispatch();
 
     const loading = useSelector((state) => state.auth.loading);
-    const error = useSelector((state) => state.auth.error);
 
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");

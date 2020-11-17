@@ -6,7 +6,6 @@ import Login from "./Login";
 import Signup from "./Signup";
 import { logout } from "../store/actions/auth";
 import { setHome } from "../store/actions/nav";
-import Modal from "./Modal";
 
 import { getReports } from "../store/actions/reports";
 
