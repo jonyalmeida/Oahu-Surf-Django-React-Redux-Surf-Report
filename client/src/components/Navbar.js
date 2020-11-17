@@ -19,12 +19,10 @@ export default function Navbar() {
     const [modal, setModal] = useState(false);
 
     const modalOpen = () => {
-        console.log("3");
         setModal(true);
     };
 
     const modalClose = () => {
-        console.log("4");
         setModal(false);
     };
 
@@ -72,12 +70,10 @@ export default function Navbar() {
             case "oahu":
                 dispatch(getReports("Oahu"));
                 dispatch(setHome("home"));
-
                 break;
             case "kauai":
                 dispatch(getReports("Kauai"));
                 dispatch(setHome("home"));
-
                 break;
             case "maui":
                 dispatch(getReports("Maui"));
@@ -90,8 +86,10 @@ export default function Navbar() {
                 dispatch(setHome("about"));
                 break;
             case "options":
-                console.log("OPTIONS");
                 dispatch(setHome("options"));
+                break;
+            case "my-spots":
+                dispatch(setHome("my-spots"));
                 break;
             default:
                 return;
@@ -159,6 +157,11 @@ export default function Navbar() {
                                         Add spots
                                     </li>
                                 </ul>
+                            </li>
+                        )}
+                        {user.id && (
+                            <li id='my-spots' onClick={handleNavClick}>
+                                My spots
                             </li>
                         )}
                     </ul>

@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useReducer, useState } from "react";
 import Autosuggest from "react-autosuggest";
+import { useSelector } from "react-redux";
 import "./fetch.css";
 import { surfSpots } from "./utils/autocomplete";
 
@@ -34,6 +35,9 @@ export default function FetchSurfSpots() {
     const [value, setValue] = useState("");
     const [suggestions, setSuggestions] = useState([]);
 
+    const csrf = useSelector((state) => state.csrf.csrfToken);
+    const user = useSelector((state) => state.auth);
+
     const getSuggestionValue = (suggestion) => {
         setN(surfSpots[suggestion]);
         return suggestion;
@@ -56,8 +60,49 @@ export default function FetchSurfSpots() {
         onChange: onChange,
     };
 
+    const handleClick = async (e) => {
+        for (let key in surfSpots) {
+            if (surfSpots[key] === n) {
+                var addSurfSpot = {
+                    [key]: surfSpots[key],
+                };
+                console.log(addSurfSpot);
+
+                console.log(csrf);
+                const response = await fetch("api/users/add_spot", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRFToken": csrf,
+                    },
+                    credentials: "include",
+                    body: JSON.stringify({ addSurfSpot, user }),
+                });
+                console.log(await response.json());
+            }
+        }
+    };
+
     return (
         <>
+            {user.id && (
+                <p
+                    id='add-spot'
+                    onClick={handleClick}
+                    style={{
+                        position: "absolute",
+                        right: "3%",
+                        top: "25%",
+                        zIndex: "200",
+                        borderRadius: "75%",
+                        backgroundColor: "#349beb",
+                        color: "white",
+                        padding: "1%",
+                        fontSize: "1.4em",
+                    }}>
+                    Add favorite spot
+                </p>
+            )}
             <div className='autosugest'>
                 <div
                     style={{

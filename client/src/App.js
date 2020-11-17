@@ -12,7 +12,8 @@ import { restoreCSRF } from "./store/actions/csrf";
 import { getReports } from "./store/actions/reports";
 import { setHome } from "./store/actions/nav";
 import FetchSurfSpots from "./components/FetchSurfSpots";
-import Options from "./components/Options.js";
+import Options from "./components/Options";
+import MySpots from "./components/MySpots";
 
 function App() {
     const dispatch = useDispatch();
@@ -22,7 +23,7 @@ function App() {
     useEffect(() => {
         dispatch(restoreCSRF());
         dispatch(getReports("Oahu"));
-        dispatch(setHome("options"));
+        dispatch(setHome("home"));
     }, [dispatch]);
 
     return (
@@ -35,6 +36,8 @@ function App() {
                 <FetchSurfSpots />
             ) : home === "options" ? (
                 <Options />
+            ) : home === "my-spots" ? (
+                <MySpots />
             ) : user.id ? (
                 <MyPage />
             ) : (

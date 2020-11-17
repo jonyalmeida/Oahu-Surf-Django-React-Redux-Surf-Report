@@ -1172,7 +1172,7 @@ export const surfSpots = {
     "Casernes ": 1175,
     "El Cayo": 1189,
     "Coalcliff Reef": 1186,
-    "Diamond Head": 1184,
+    "Diamond Head": 4697,
     "Plemont Bay - Jersey": 1192,
     "Greve de Lecq - Jersey": 1193,
     Macuro: 1194,

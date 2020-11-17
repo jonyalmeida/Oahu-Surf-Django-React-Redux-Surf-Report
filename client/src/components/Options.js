@@ -10,12 +10,9 @@ export default function Options() {
 
     const addSelect = (e) => {
         e.stopPropagation();
-        console.log("ONCLICK");
         const selectedCopy = { ...selected };
-        console.log(e.target.id, selectedCopy);
         for (let value of Object.keys(selectedCopy)) {
             if (e.target.id === value) {
-                console.log(value);
                 selectedCopy[value] = "selected";
             } else {
                 selectedCopy[value] = "";
